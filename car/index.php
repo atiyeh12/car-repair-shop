@@ -3,7 +3,19 @@ ini_set('display_errors', 1);
 error_reporting(~0);
 require_once ('../database/config.php');
 
+if(isset($_REQUEST['del'])){
+    $carId = intval($_GET['del']);
+   
+    $sql = "DELETE from cars  WHERE id=$carId";
 
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('record deleted successfully');</script>";
+        echo "<script>window.location.href='index.php'</script>";
+    } else {
+        echo "<script>alert('Error deleted record');</script>";
+        echo "Error updating record: " . mysqli_error($conn);
+    }
+}
     ?>
     <!DOCTYPE html>
     <html>
@@ -29,7 +41,7 @@ require_once ('../database/config.php');
                     <tr>
                         <th>name</th>
                         <th>model</th>
-                        <th>colour</th>
+                        <th>color</th>
                         <th>plate</th>
                         <th>edit item </th>
                         <th>delete item</th>
@@ -68,6 +80,8 @@ require_once ('../database/config.php');
                     }
                     $conn->close();
                     ?>
+                    	
+         <a href="create.php">Visit create.php</a>
 
     </body>
     </html>
