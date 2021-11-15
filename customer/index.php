@@ -41,6 +41,8 @@ if(isset($_REQUEST['del'])){
                     <th>age</th>
                     <th>phone</th>
                     <th>car</th>
+                    <th>edit item </th>
+                    <th>delete item</th>
                 </tr>   
 
                 <?php

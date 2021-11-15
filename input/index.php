@@ -41,6 +41,8 @@ if(isset($_REQUEST['del'])){
                     <th>description</th>
                     <th>date</th>
                     <th>customer</th>
+                    <th>edit item </th>
+                    <th>delete item</th>
                 </tr>   
 
                 <?php
