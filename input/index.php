@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(~0);
 require_once ('../database/config.php');
 if(isset($_REQUEST['del'])){
-    $input = intval($_GET['del']);
+    $inputId= intval($_GET['del']);
    
     $sql = "DELETE from input  WHERE id=$inputId";
 
@@ -37,10 +37,10 @@ if(isset($_REQUEST['del'])){
             ?>
 			<table style="width:100%" border="1">
                 <tr>
-                    <th>price</th>
-                    <th>customerId</th>
+                    <th>prise</th>
                     <th>description</th>
                     <th>date</th>
+                    <th>customer</th>
                 </tr>   
 
                 <?php
@@ -52,22 +52,19 @@ if(isset($_REQUEST['del'])){
                         </td>
 
                         <td>
-                            <?php echo $row["customer_id"]; ?>
+                            <?php echo $row["description"]; ?>
                         </td>
                       
                         <td>
-                            <?php echo $row["description"]; ?>
-                        </td>
-                        <td>
                             <?php echo $row["created_at"]; ?>
                         </td>
-
+                        <td>
                             <?php
                 
                             $sqlCar= "SELECT name FROM customers WHERE id=".$row['customer_id'];
-                            $resultCustomer = $conn->query($sqlCar);
-                            while($rowCustomer = $resultCustomer->fetch_assoc()) {
-                                    echo $rowCustomer["name"];
+                            $resultCar = $conn->query($sqlCar);
+                            while($rowCar = $resultCar->fetch_assoc()) {
+                                    echo $rowCar["name"];
                             }
                             // echo "category_id: " . $row["category_id"]."<br>";
                             echo "<br><br>";

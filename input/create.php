@@ -8,13 +8,13 @@ require_once ('../database/config.php');
     <?php
             if (isset($_POST['insert'])) {
     
-                $stmt = $conn->prepare("INSERT INTO customers (customer_id,prise,description) VALUES (?, ?, ?)");
+                $stmt = $conn->prepare("INSERT INTO input (customer_id,price,description) VALUES (?, ?, ?)");
     
-                $stmt->bind_param("sss", $customerId, $prise, $description);
+                $stmt->bind_param("sss",$customerId,$price, $description);
                 $description= $_POST['description'];
-                $prise= $_POST['prise'];
-                $customerId = $_POST['customerId'];
-            
+                $price= $_POST['price'];
+                $customerId= $_POST[$customerId];
+               
 
                 $stmt->execute();
     
@@ -48,32 +48,24 @@ require_once ('../database/config.php');
             <h2>create input</h2>
                 <form method="post">
                     <input type="hidden" name="insert" value = "true"/>
+                    
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="customerId">customer_id:</label>
+                        <label class="control-label col-sm-2" for="price">price:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="customerId" placeholder="  customerId">
+                            <input type="text" class="form-control" name="price" placeholder=" show price">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="prise">prise:</label>
+                        <label class="control-label col-sm-2" for="description">description:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="prise" placeholder=" show prise">
+                            <input type="text" class="form-control" name="description" placeholder="  description">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="phone">phone:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="phone" placeholder=" phone"> 
-
-                        </div>        
-                    </div>
-        
-
-            
+                 
        
                     <?php
-                    echo "<select name='cars'>";
-                    $sql2 = "SELECT * FROM cars" ;
+                    echo "<select name='customerId'>";
+                    $sql2 = "SELECT * FROM customers" ;
                                 $result2 = $conn->query($sql2);
                                 while($row2 = $result2->fetch_assoc()) {
                                     echo "<option value='" . $row2['id'] . "'>" . $row2['name'] . "</option>";
