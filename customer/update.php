@@ -2,15 +2,17 @@
 ini_set('display_errors', 1);
 error_reporting(~0);
 require_once ('../database/config.php');
-$carId = intval($_GET['id']);
+$customerId = intval($_GET['id']);
 
 if(isset($_POST['update'])){
 
     $name = $_POST['name'];
+    $family = $_POST['family'];
     $age= $_POST['age'];
     $phone= $_POST['phone'];
     $carId=$_POST['car_id'];
-    $sql = "UPDATE customers SET name='$name', age='$age', phone='$phone',car_id='$carId' WHERE id=$carId";
+ 
+    $sql = "UPDATE customers SET name='$name', age='$age', family='$family', phone='$phone',car_id='$carId' WHERE id=$customerId";
 
     if (mysqli_query($conn, $sql)) {
         echo "<script>alert('record updated successfully');</script>";
@@ -50,10 +52,11 @@ if(isset($_POST['update'])){
      <?php   
      
       
-      $sql = "SELECT * from customers where  id=".$carId;
+      $sql = "SELECT * from customers where  id=".$customerId;
       $result = $conn->query($sql);
       while($row = $result->fetch_assoc()) {
         $name = $row['name'];
+        $family = $row['family'];
         $age= $row['age'];
         $phone=$row['phone'];
         $carId=$row['car_id'];
@@ -67,6 +70,11 @@ if(isset($_POST['update'])){
                 <div class="form-group col-md-3">
                     <label>name</label>
                     <input type="text" class="form-control" name="name" value="<?php echo $name ?>">
+                    
+                </div>
+                <div class="form-group col-md-3">
+                    <label>family</label>
+                    <input type="text" class="form-control" name="family" value="<?php echo $family ?>">
                     
                 </div>
 

@@ -2,14 +2,14 @@
 ini_set('display_errors', 1);
 error_reporting(~0);
 require_once ('../database/config.php');
-$customerId = intval($_GET['id']);
+$inputId = intval($_GET['id']);
 
 if(isset($_POST['update'])){
 
     $price = $_POST['price'];
     $description= $_POST['description'];
     $customerId=$_POST['customer_id'];
-    $sql = "UPDATE input SET price='$price', description='$description',customer_id='$customerId' WHERE id=$customerId";
+    $sql = "UPDATE input SET price='$price', description='$description',customer_id='$customerId' WHERE id=$inputId";
 
     if (mysqli_query($conn, $sql)) {
         echo "<script>alert('record updated successfully');</script>";
@@ -49,7 +49,7 @@ if(isset($_POST['update'])){
      <?php   
      
       
-      $sql = "SELECT * from input where  id=".$customerId;
+      $sql = "SELECT * from input where  id=".$inputId;
       $result = $conn->query($sql);
       while($row = $result->fetch_assoc()) {
         $price = $row['price'];

@@ -38,6 +38,7 @@ if(isset($_REQUEST['del'])){
 			<table style="width:100%" border="1">
                 <tr>
                     <th>name</th>
+                    <th>family</th>
                     <th>age</th>
                     <th>phone</th>
                     <th>car</th>
@@ -52,7 +53,9 @@ if(isset($_REQUEST['del'])){
                         <td>
                             <?php echo $row["name"]; ?>
                         </td>
-
+                        <td>
+                            <?php echo $row["family"]; ?>
+                        </td>
                         <td>
                             <?php echo $row["age"]; ?>
                         </td>

@@ -8,10 +8,11 @@ require_once ('../database/config.php');
     <?php
             if (isset($_POST['insert'])) {
     
-                $stmt = $conn->prepare("INSERT INTO customers (name,age,phone,car_id) VALUES (?, ?, ?, ?)");
+                $stmt = $conn->prepare("INSERT INTO customers (name,family,age,phone,car_id) VALUES (?, ?, ?, ?, ?)");
     
-                $stmt->bind_param("ssss", $name, $age, $phone,$carId);
+                $stmt->bind_param("sssss", $name,$family, $age, $phone,$carId);
                 $name = $_POST['name'];
+                $family = $_POST['family'];
                 $age= $_POST['age'];
                 $phone= $_POST['phone'];
                 $carId = $_POST['cars'];
@@ -52,8 +53,12 @@ require_once ('../database/config.php');
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">name:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" placeholder="  name of car">
+                            <input type="text" class="form-control" name="name" placeholder="  name of customer">
                         </div>
+                        <div class="form-group">
+                        <label class="control-label col-sm-2" for="family">family:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="family" placeholder=" family">
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="age">age:</label>
